@@ -9,6 +9,5 @@ admin.site.register(models.Genre)
 admin.site.register(models.RatingStar)
 admin.site.register(models.Rating)
 admin.site.register(models.Review)
-
 admin.site.register(models.Movie)
 admin.site.register(models.MovieShot)

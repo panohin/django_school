@@ -5,5 +5,5 @@ from .views import MoviesView
 
 
 urlpatterns = [
-    path('', MoviesView.as_view(), name='movie_list'),
+    path('', MoviesView.as_view(),  name='movie_list'),
 ]

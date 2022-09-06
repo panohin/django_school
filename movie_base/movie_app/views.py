@@ -7,4 +7,4 @@ class MoviesView(View):
 	'''Список фильмов'''
 	def get(self, request):
 		movies = Movie.objects.all()
-		return render(request, 'movie_app/movie_list.html', {'movies':movies})
+		return render(request, 'movie_app/movies.html', {'movies':movies})
