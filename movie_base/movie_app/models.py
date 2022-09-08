@@ -3,6 +3,7 @@ from tabnanny import verbose
 from django.db import models
 from datetime import date
 from django.utils.text import slugify
+from django.urls import reverse
 
 class Category(models.Model):
     '''Категории'''
@@ -79,6 +80,9 @@ class Movie(models.Model):
         self.url = slugify(self.title, allow_unicode=True)
         self.save()
     
+    def get_absolute_url(self):
+        return reverse('movie_detail_url', kwargs={'slug':self.url})
+
     class Meta:
         verbose_name = 'Фильм'
         verbose_name_plural = 'Фильмы'
