@@ -2,6 +2,7 @@ from statistics import mode
 from tabnanny import verbose
 from django.db import models
 from datetime import date
+from django.utils.text import slugify
 
 class Category(models.Model):
     '''Категории'''
@@ -22,9 +23,10 @@ class Actor(models.Model):
     age = models.PositiveSmallIntegerField('Возраст', default=0)
     description = models.TextField('Описание')
     image = models.ImageField('Изображение', upload_to='actors/')
-
+    
     def __str__(self):
         return self.name
+
 
     class Meta:
         verbose_name = 'Актёр или режиссер'
@@ -68,9 +70,14 @@ class Movie(models.Model):
         )
     url = models.SlugField(max_length=160, unique=True)
     draft = models.BooleanField('Черновик', default=False)
+    trailer = models.URLField('Ссылка на трейлер', null=True, blank=True, default='#')
 
     def __str__(self):
         return self.title
+
+    def save(self):
+        self.url = slugify(self.title, allow_unicode=True)
+        self.save()
     
     class Meta:
         verbose_name = 'Фильм'
