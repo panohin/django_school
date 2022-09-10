@@ -32,13 +32,13 @@
                     <!-- nav -->
                     <nav class="py-4">
                         <div id="logo">
-                            <h1> <a href="index.html" class="editContent" style="outline: none; outline-offset: -2px; cursor: inherit; color: rgb(255, 255, 255); font-size: 40px; background-color: rgba(0, 0, 0, 0); font-family: &quot;Source Sans Pro&quot;, sans-serif;">DjangoMovie</a></h1>
+                            <h1> <a href="{% url 'movie_list_url' %}" class="editContent" style="outline: none; outline-offset: -2px; cursor: inherit; color: rgb(255, 255, 255); font-size: 40px; background-color: rgba(0, 0, 0, 0); font-family: &quot;Source Sans Pro&quot;, sans-serif;">DjangoMovie</a></h1>
                         </div>
 
                         <label for="drop" class="toggle">Menu</label>
                         <input type="checkbox" id="drop">
                         <ul class="menu mt-2">
-                            <li class="active"><a href="index.html">Главная</a></li>
+                            <li class="active"><a href="{% url 'movie_list_url' %}">Главная</a></li>
                             <li>
                                 <!-- First Tier Drop Down -->
                                 <label for="drop-2" class="toggle">Категории <span class="fa fa-angle-down" aria-hidden="true" ></span> </label>
@@ -73,7 +73,7 @@
         <!---->
         <ol class="breadcrumb editContent">
             <li class="breadcrumb-item">
-                <a href="index.html" class="editContent">Home</a>
+                <a href="{% url 'movie_list_url' %}" class="editContent">Home</a>
             </li>
             <li class="breadcrumb-item active editContent">Single Page</li>
         </ol>
@@ -268,7 +268,7 @@
                 <div class="row footer-top">
                     <div class="col-lg-4 footer-grid_section_w3layouts">
                         <h2 class="logo-2 mb-lg-4 mb-3">
-                            <a href="index.html" class="editContent">
+                            <a href="{% url 'movie_list_url' %}" class="editContent">
                                 <span class="fa" aria-hidden="true" >
                                     Django School
                                 </span>
@@ -319,7 +319,7 @@
                                 <h3 class="footer-title text-uppercase editContent mb-lg-4 mb-3" >Разделы</h3>
                                 <ul class="list-unstyled w3layouts-icons">
                                     <li>
-                                        <a href="index.html" class="editContent" >Главная</a>
+                                        <a href="{% url 'movie_list_url' %}" class="editContent" >Главная</a>
                                     </li>
                                     <li>
                                         <a href="about.html" class="editContent" >Категории</a>
