@@ -5,9 +5,7 @@ from .views import MoviesView, MovieDetailView, UserTemplateView, show_movie
 
 
 urlpatterns = [
-    path('asd', show_movie),
     path('info', UserTemplateView.as_view()),
-
     path('<slug:slug>', MovieDetailView.as_view(), name='movie_detail_url'),
     path('', MoviesView.as_view(),  name='movie_list_url'),
     

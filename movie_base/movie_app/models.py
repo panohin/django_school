@@ -71,14 +71,14 @@ class Movie(models.Model):
         )
     url = models.SlugField(max_length=160, unique=True)
     draft = models.BooleanField('Черновик', default=False)
-    trailer = models.URLField('Ссылка на трейлер', null=True, blank=True, default='#')
+    trailer = models.URLField('Ссылка на трейлер', null=True, blank=True)
 
     def __str__(self):
         return self.title
 
-    def save(self):
-        self.url = slugify(self.title, allow_unicode=True)
-        self.save()
+    # def save(self):
+    #     self.url = slugify(self.title, allow_unicode=True)
+    #     self.save()
     
     def get_absolute_url(self):
         return reverse('movie_detail_url', kwargs={'slug':self.url})
