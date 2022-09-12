@@ -73,6 +73,11 @@ body {
   outline: 0 !important;
 }
 
+.img-movie-shots {
+  max-width: 250px;
+  height: auto;
+}
+
 hr {
   box-sizing: content-box;
   height: 0;
