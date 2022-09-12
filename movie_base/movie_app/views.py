@@ -10,7 +10,8 @@ class MoviesView(ListView):
 	'''Список фильмов'''
 	model = Movie
 	queryset = Movie.objects.filter(draft=False)
-	template_name = 'movie_app/movies.html'
+	# context_object_name = 'movies'
+	# template_name = 'movie_app/movies.html'
 	
 class MovieDetailView(DetailView):
 	'''Страница с подробным описанием конкретного фильма'''
