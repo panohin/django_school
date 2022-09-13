@@ -138,7 +138,7 @@ class Review(models.Model):
         )
 
     def __str__(self):
-        return f'{self.movie} - {self.name}'
+        return f'{self.movie} - {self.name} - {self.text}'
 
     class Meta:
         verbose_name = 'Отзыв'
