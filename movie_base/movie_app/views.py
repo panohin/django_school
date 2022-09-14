@@ -29,12 +29,13 @@ class UserTemplateView(TemplateView):
 class AddReview(View):
 	'''Отзыв'''
 	def post(self, request, pk):
+		movie = get_object_or_404(Movie, pk=pk)
 		form = ReviewForm(request.POST)
 		if form.is_valid():
 			form = form.save(commit=False)
 			form.movie_id = pk
 			form.save()
-		return redirect('movie_list_url')
+		return redirect(movie.get_absolute_url())
 
 def show_movie(reqiest):
 	m = Movie.objects.all()
