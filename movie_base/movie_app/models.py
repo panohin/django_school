@@ -76,10 +76,9 @@ class Movie(models.Model):
     def __str__(self):
         return self.title
 
-    # def save(self):
-    #     self.url = slugify(self.title, allow_unicode=True)
-    #     self.save()
-    
+    def get_review(self):
+        return self.review_set.filter(parent__isnull=True)
+
     def get_absolute_url(self):
         return reverse('movie_detail_url', kwargs={'slug':self.url})
 
