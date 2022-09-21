@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
+{% load movie_tag %}
 <html lang="ru">
 <head>
     <!-- //Meta tag Keywords -->
@@ -45,9 +46,10 @@
                                 <a href="#">Категории <span class="fa fa-angle-down" aria-hidden="true"></span></a>
                                 <input type="checkbox" id="drop-2">
                                 <ul>
-                                    <li><a href="moviesingle.html">Фильмы</a></li>
-                                    <li><a href="moviesingle.html">Сериалы</a></li>
-                                    <li><a href="moviesingle.html">Мультфильмы</a></li>
+                                {% get_categories as categories %}
+                                {% for category in categories %}
+                                    <li><a href="#"{{ category.name }}</a></li>
+                                {% endfor %}
                                 </ul>
                             </li>
                             <li><a href="contact.html" style="color: rgb(255, 255, 255); font-weight: 700; text-transform: uppercase;">Вход</a></li>
@@ -203,21 +205,7 @@
                         </div>
                         <!-- //reviews -->
                         <!-- deals -->
-                        <div class="deal-leftmk left-side">
-                            <h3 class="sear-head editContent">Последние добавленные</h3>
-                            {% for movie in object_list %}
-                            <div class="special-sec1 row mt-3 editContent">
-                                <div class="img-deals col-md-4">
-                                    <img src="" class="img-fluid" alt="">
-                                </div>
-                                <div class="img-deal1 col-md-4">
-                                    <h3 class="editContent">{{ movie.title }}</h3>
-                                    <a href="moviesingle.html" class="editContent" ></a>
-                                </div>
-
-                            </div>
-                            {% endfor %}
-                            </div>
+                        {% get_last_movie count=1 %}
                         <!-- //deals -->
 
                     </div>

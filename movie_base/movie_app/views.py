@@ -4,13 +4,19 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.http import HttpResponse	
 
-from .models import Movie, Review
+from .models import Movie, Review, Category
 from .forms import ReviewForm
 
 class MoviesView(ListView):
 	'''Список фильмов'''
 	model = Movie
 	queryset = Movie.objects.filter(draft=False)
+
+	def get_context_data(self, *args, **kwargs):
+		context = super().get_context_data(*args, **kwargs)
+		context['categories'] = Category.objects.all()
+		return context
+
 	# context_object_name = 'movies'
 	# template_name = 'movie_app/movies.html'
 	
