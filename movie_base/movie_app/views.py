@@ -4,7 +4,7 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.http import HttpResponse	
 
-from .models import Movie, Review, Category
+from .models import Movie, Review, Category, Actor
 from .forms import ReviewForm
 
 class MoviesView(ListView):
@@ -28,6 +28,12 @@ class MovieDetailView(DetailView):
 	# def get(self, request, slug):
 	# 	movie = get_object_or_404(Movie, url=slug)
 	# 	return render(request, 'movie_app/movie_detail.html', {'movie':movie})
+
+class ActorView(DetailView):
+	'''Страница с подробным описанием актера или режиссера'''
+	model = Actor
+	slug_field = 'pk'
+	template_name = 'movie_app/actor.html'
 
 class UserTemplateView(TemplateView):
 	template_name = 'movie_app/info.html'
