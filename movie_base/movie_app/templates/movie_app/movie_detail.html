@@ -348,12 +348,12 @@
                                 <li style="list-style: none">
                                     <span><b>Режиссер:</b>
                                     {% for director in movie.directors.all %}
-                                    	{{ director.name }}
+                                    	<a href="{% url 'actor_detail_url' director.name %}">{{ director.name }}</a>
                                 	{% endfor %}
                             		</span></li>
                                 <li style="list-style: none"><span><b>Актеры:</b>
                                 	{% for actor in movie.actors.all %}
-                            			<a href="{% url 'actor_detail_url' actor.pk %}">{{ actor.name }}</a>
+                            			<a href="{% url 'actor_detail_url' actor.name %}">{{ actor.name }}</a>
                        				{% endfor %}
                     				</span></li>
                                 <li style="list-style: none"><span><b>Жанр:</b>

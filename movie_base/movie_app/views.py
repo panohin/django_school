@@ -32,7 +32,7 @@ class MovieDetailView(DetailView):
 class ActorView(DetailView):
 	'''Страница с подробным описанием актера или режиссера'''
 	model = Actor
-	slug_field = 'pk'
+	slug_field = 'name'
 	template_name = 'movie_app/actor.html'
 
 class UserTemplateView(TemplateView):

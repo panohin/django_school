@@ -341,6 +341,16 @@
                             <h5 class="editContent">in english, please</h5>
                             <ul>
                                 <li style="list-style: none"><span><b>Возраст:</b>{{ actor.age }}</span></li>
+                                <li style="list-style: none"><span><b>Режиссер:</b>
+                                    {% for movie in actor.film_director.all %}
+                                    {{ movie.title }}
+                                    {% endfor %}
+                                </span></li>
+                                <li style="list-style: none"><span><b>Актёр:</b>
+                                    {% for movie in actor.film_actor.all %}
+                                    {{ movie.title }}
+                                    {% endfor %}
+                                </span></li>
                                 <div class="share-desc">
                                     <div class="share">
                                         <h4 class="editContent"
@@ -395,49 +405,6 @@
                     </div>
                     <hr>
                     <div class="row">
-                        <div class="single-form-left">
-                            <!-- contact form grid -->
-                            <div class="contact-single">
-                                <h3 class="editContent" style="outline: none; cursor: inherit;">
-                                    <span class="sub-tittle editContent"
-                                          style="outline: none; cursor: inherit;">{{ movie.review_set.count }}</span>Оставить отзыв</h3>
-                                <form action="{% url 'add_review_url' movie.pk %}" method="post" class="mt-4" id="formReview">
-                                	{% csrf_token %}
-                                	<input type="hidden" name="parent" id="contactparent" value="">
-                                    <div class="form-group editContent"
-                                         style="outline: none; cursor: inherit;">
-                                        <label for="contactcomment" class="editContent"
-                                               style="outline: none; cursor: inherit;">Ваш комментарий
-                                            *</label>
-                                        <textarea class="form-control border" name="text" rows="5"
-                                                  id="contactcomment" required=""></textarea>
-                                    </div>
-                                    <div class="d-sm-flex">
-                                        <div class="col-sm-6 form-group p-0 editContent"
-                                             style="outline: none; cursor: inherit;">
-                                            <label for="contactusername" class="editContent"
-                                                   style="outline: none; cursor: inherit;">Имя
-                                                *</label>
-                                            <input type="text" class="form-control border" name="name"
-                                                   id="contactusername" required="">
-                                        </div>
-                                        <div class="col-sm-6 form-group ml-sm-3 editContent"
-                                             style="outline: none; cursor: inherit;">
-                                            <label for="contactemail" class="editContent"
-                                                   style="outline: none; cursor: inherit;">Email
-                                                *</label>
-                                            <input type="email" class="form-control border" name="email"
-                                                   id="contactemail" required="">
-                                        </div>
-                                    </div>
-                                    <button type="submit"
-                                            class="mt-3 btn btn-success btn-block py-3"
-                                            style="outline: none; cursor: inherit;">Отправить
-                                    </button>
-                                </form>
-                            </div>
-                            <!--  //contact form grid ends here -->
-                        </div>
                         {% for review in movie.get_review %}
                         <div class="media py-5">
                             <img src=" {% static 'images/te2.jpg' %}" class="mr-3 img-fluid" alt="image"
