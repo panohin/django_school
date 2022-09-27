@@ -3,11 +3,29 @@ from django.views.generic.base import View, TemplateView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.http import HttpResponse	
+from django.db.models import Q
 
-from .models import Movie, Review, Category, Actor
+from .models import Movie, Review, Category, Actor, Genre
 from .forms import ReviewForm
 
-class MoviesView(ListView):
+
+class FilterMoviesView(ListView):
+	'''Список фильмов по фильтру'''
+	def get_queryset(self):
+		queryset = Movie.objects.filter(
+			Q(year__in=self.request.GET.getlist('year')) | 
+			Q(genres__in=self.request.GET.getlist('genre')))
+		return queryset
+
+class GenreYear:
+	'''Жанры и годы выпуска фильмов'''
+	def get_genres(self):
+		return Genre.objects.all()
+
+	def get_years(self):
+		return Movie.objects.filter(draft=False).values('year').distinct()
+
+class MoviesView(GenreYear, ListView):
 	'''Список фильмов'''
 	model = Movie
 	queryset = Movie.objects.filter(draft=False)
@@ -20,7 +38,7 @@ class MoviesView(ListView):
 	# context_object_name = 'movies'
 	# template_name = 'movie_app/movies.html'
 	
-class MovieDetailView(DetailView):
+class MovieDetailView(GenreYear, DetailView):
 	'''Страница с подробным описанием конкретного фильма'''
 	model = Movie
 	slug_field = 'url'
@@ -29,7 +47,7 @@ class MovieDetailView(DetailView):
 	# 	movie = get_object_or_404(Movie, url=slug)
 	# 	return render(request, 'movie_app/movie_detail.html', {'movie':movie})
 
-class ActorView(DetailView):
+class ActorView(GenreYear, DetailView):
 	'''Страница с подробным описанием актера или режиссера'''
 	model = Actor
 	slug_field = 'name'
